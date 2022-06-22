@@ -22,9 +22,9 @@ class bcolors:
 
 
 def instructions():
-  instructions = f'\n{bcolors.HEADER}INSTRUCCIONES:{bcolors.ENDC}\n\n\t{bcolors.OKBLUE}1. Descarga el archivo de Drive\
-con las correcciones marcadas como .csv y ten lista la direccón completa de dónde se guardó el\
-arcihvo\n\t2. Copia la carpeta con los audios .wav de Master/Remaster (carpeta Bounced Files)\
+  instructions = f'\n{bcolors.HEADER}INSTRUCCIONES:{bcolors.ENDC}\n\n\t{bcolors.OKBLUE}1. Descarga el archivo de Drive \
+con las correcciones marcadas como .csv y ten lista la direccón completa de dónde se guardó el \
+arcihvo\n\t2. Copia la carpeta con los audios .wav de Master/Remaster (carpeta Bounced Files) \
 o última entrega antes de estas correcciones\n{bcolors.ENDC}'
   print(instructions)
 
@@ -139,7 +139,6 @@ def get_full_time():
 
   if len(conflict_times) > 0:
     for conflict in conflict_times:
-      pass
       print(
         bcolors.FAIL + f'El {conflict[0].lower()} tiene un conflicto de tiempo con el {conflict[1].lower()}' + bcolors.ENDC)
     exit()

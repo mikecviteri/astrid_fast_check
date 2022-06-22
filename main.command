@@ -24,10 +24,14 @@ class bcolors:
 def get_csv():
   path = input('Ingresa el archivo .csv')
   if os.path.exists(path) and path.endswith('.csv'):
-    return pd.read_csv(path).astype(str), os.path.basename(path)
+    return path
   else:
     print(bcolors.FAIL + f'\n{path} No es un archivo .csv valido!\n' + bcolors.ENDC)
     get_full_time()
+
+
+def read_csv(file):
+  return pd.read_csv(file).astype(str)
 
 
 def get_path(folder):
@@ -61,7 +65,7 @@ def get_audio_duration():
   audios = sorted([i for i in os.listdir(directory) if i.endswith('.wav')], key=lambda x: x[-7:-4])
   result = list()
   for i in audios:
-    with contextlib.closing(wave.open('{}/{}.'.format(directory, i), 'r')) as f:
+    with contextlib.closing(wave.open('{}/{}'.format(directory, i), 'r')) as f:
       frames = f.getnframes()
       rate = f.getframerate()
       duration = int(frames / float(rate))
@@ -70,7 +74,9 @@ def get_audio_duration():
 
 
 def get_full_time():
-  df, file_name = get_csv()
+  full_csv_path = get_csv()
+  file_name = os.path.basename(full_csv_path)
+  df = read_csv(full_csv_path)
 
   my_dict = {}
 
@@ -110,7 +116,7 @@ def get_full_time():
 
   for i in range(len(tcr)):
     if i in chapters_idx:
-      output_list.append([i + 1, 'FIN P{\'{:03d}\'.format(count + 1).f}', to_hms(sum(audio_lengths[:count + 1]))])
+      output_list.append([i + 1, f'FIN P{"{:03d}".format(count + 1)}', to_hms(sum(audio_lengths[:count + 1]))])
       count += 1
     else:
       output_list.append([i + 1, 'Error {}'.format(i + 1 - count), to_hms(tcr[i] + sum(audio_lengths[:count]))])
@@ -138,3 +144,4 @@ def get_full_time():
 
 if __name__ == '__main__':
   get_full_time()
+  print(bcolors.OKGREEN + '\nProceso terminado!\nBusca el csv final en tu escritorio\n' + bcolors.ENDC)

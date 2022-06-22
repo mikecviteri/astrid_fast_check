@@ -21,6 +21,14 @@ class bcolors:
   UNDERLINE = '\033[4m'
 
 
+def instructions():
+  instructions = f'\n{bcolors.HEADER}INSTRUCCIONES:{bcolors.ENDC}\n\n\t{bcolors.OKBLUE}1. Descarga el archivo de Drive\
+con las correcciones marcadas como .csv y ten lista la direccón completa de dónde se guardó el\
+arcihvo\n\t2. Copia la carpeta con los audios .wav de Master/Remaster (carpeta Bounced Files)\
+o última entrega antes de estas correcciones\n{bcolors.ENDC}'
+  print(instructions)
+
+
 def get_csv():
   path = input('Ingresa el archivo .csv')
   if os.path.exists(path) and path.endswith('.csv'):
@@ -143,5 +151,6 @@ def get_full_time():
 
 
 if __name__ == '__main__':
+  instructions()
   get_full_time()
   print(bcolors.OKGREEN + '\nProceso terminado!\nBusca el csv final en tu escritorio\n' + bcolors.ENDC)

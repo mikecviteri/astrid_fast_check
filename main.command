@@ -26,7 +26,7 @@ def get_csv():
   if os.path.exists(path) and path.endswith('.csv'):
     return pd.read_csv(path).astype(str), os.path.basename(path)
   else:
-    # print(bcolors.FAIL + f'\n{path} No es un archivo .csv valido!\n' + bcolors.ENDC)
+    print(bcolors.FAIL + f'\n{path} No es un archivo .csv valido!\n' + bcolors.ENDC)
     get_full_time()
 
 
@@ -34,7 +34,7 @@ def get_path(folder):
   if os.path.isdir(folder):
     return folder
   else:
-    # print(bcolors.FAIL + f'\n{folder} No es una carpeta valida!\n' + bcolors.ENDC)
+    print(bcolors.FAIL + f'\n{folder} No es una carpeta valida!\n' + bcolors.ENDC)
     get_audio_duration()
 
 
@@ -98,8 +98,8 @@ def get_full_time():
   if len(errors) > 0:
     for i in range(len(errors)):
       pass
-      # print(bcolors.FAIL + f'Hay un ERROR en la fila {errors[i]}!' + bcolors.ENDC)
-    # exit()
+      print(bcolors.FAIL + f'Hay un ERROR en la fila {errors[i]}!' + bcolors.ENDC)
+    exit()
   else:
     pass
 
@@ -126,9 +126,9 @@ def get_full_time():
   if len(conflict_times) > 0:
     for conflict in conflict_times:
       pass
-    #   print(
-    #     bcolors.FAIL + f'El {conflict[0].lower()} tiene un conflicto de tiempo con el {conflict[1].lower()}' + bcolors.ENDC)
-    # exit()
+      print(
+        bcolors.FAIL + f'El {conflict[0].lower()} tiene un conflicto de tiempo con el {conflict[1].lower()}' + bcolors.ENDC)
+    exit()
   else:
     pass
 
